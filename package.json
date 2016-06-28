@@ -1,0 +1,41 @@
+{
+  "name": "craven",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typings": "typings",
+    "build": "webpack --env.prod",
+    "start": "webpack-dev-server --env.dev"
+  },
+  "keywords": [],
+  "author": "Ha Pham <mahpahh@gmail.com> (http://mahpahh.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "awesome-typescript-loader": "^1.1.1",
+    "babel": "^6.5.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015-webpack": "^6.4.1",
+    "babel-preset-stage-2": "^6.11.0",
+    "html-webpack-plugin": "^2.21.0",
+    "ts-helpers": "^1.1.1",
+    "ts-loader": "^0.8.2",
+    "typescript": "^1.8.10",
+    "typings": "^1.3.1",
+    "webpack": "^2.1.0-beta.14",
+    "webpack-dev-server": "^2.1.0-beta.0"
+  },
+  "dependencies": {
+    "@angular/common": "^2.0.0-rc.3",
+    "@angular/compiler": "^2.0.0-rc.3",
+    "@angular/core": "^2.0.0-rc.3",
+    "@angular/forms": "^0.1.1",
+    "@angular/http": "^2.0.0-rc.3",
+    "@angular/platform-browser": "^2.0.0-rc.3",
+    "@angular/platform-browser-dynamic": "^2.0.0-rc.3",
+    "@angular/router": "^3.0.0-alpha.8",
+    "rxjs": "^5.0.0-beta.6",
+    "zone.js": "^0.6.12"
+  }
+}
