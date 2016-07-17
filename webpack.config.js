@@ -31,22 +31,30 @@ module.exports = (env) => ({
       },
       {
         test: /\.ts$/,
-        loaders: ['awesome-typescript', 'angular2-template'],
+        loaders: ['babel', 'awesome-typescript', 'angular2-template'],
         exclude: /node_modules/,
       },
       {
         test: /\.tpl.html/,
         loaders: ['raw'],
       },
-
-      // {
-      //   test: /\.css$/,
-      //   loader: ExtractTextPlugin.extract('style', 'css?sourceMaps'),
-      //   exclude: root('./src/app'),
-      // },
+      {
+        test: /\.jade/,
+        loaders: ['pug-html'],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        loader: 'file?name=assets/[name].[hash].[ext]',
+      },
       {
         test: /\.scss/,
         loaders: ['raw', 'sass?sourceMaps'],
+        include: root('src/app'),
+      },
+      {
+        test: /\.scss/,
+        loaders: ['style', 'css', 'resolve-url', 'sass?sourceMap'],
+        include: root('src/styles'),
       },
     ],
   },
@@ -65,4 +73,9 @@ module.exports = (env) => ({
       name: ['app', 'vendor', 'polyfill'],
     }),
   ]),
+
+  devServer: {
+    historyApiFallback: true,
+    stats: 'minimal',
+  },
 });

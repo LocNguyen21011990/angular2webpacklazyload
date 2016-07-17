@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 
 /**
- * Home
+ * MainWrapper
  */
 @Component({
-  templateUrl: './home.jade',
-  styleUrls: ['./home.scss'],
+  templateUrl: './main-wrapper.jade',
 })
-export class Home {
+export class MainWrapper {
   constructor() {
 
   }

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
  * AuthorList
  */
 @Component({
-  template: './author-list.tpl.html',
+  templateUrl: './author-list.jade',
 })
 export class AuthorList {
   constructor() {

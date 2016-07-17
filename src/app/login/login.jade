@@ -1,0 +1,12 @@
+form(*ngIf="form", (ngSubmit)="handleFormSubmit()", [formGroup]="form")
+  .form-group
+    label Username
+    input(formControlName="username")
+    ul.error-message(*ngIf="isSubmitted && form.controls.username.errors")
+      li(*ngFor="let e of form.controls.username.errors | objectIterable")
+        | {{ e.key }}
+  .form-group
+    label Password
+    input(type="password", formControlName="password")
+  .form-actions
+    button.btn(type="submit") Login
