@@ -1,5 +1,7 @@
 {
   "name": "craven",
   "dependencies": {},
-  "globalDependencies": {}
+  "globalDependencies": {
+    "require": "registry:dt/require#2.1.20+20160316155526"
+  }
 }

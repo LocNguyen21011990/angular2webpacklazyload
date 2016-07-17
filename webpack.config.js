@@ -1,9 +1,13 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const { resolve } = require('path');
+const { root, stripUnused, only } = require('./helpers');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (env) => ({
-  context: resolve(__dirname, './src'),
+  context: root('./src'),
+  resolve: {
+    extensions: ['', '.js', '.ts'],
+  },
   entry: {
     polyfill: './polyfill.ts',
     vendor: './vendor.ts',
@@ -12,7 +16,7 @@ module.exports = (env) => ({
 
   output: {
     filename: '[name].bundle.js',
-    path: resolve(__dirname, './dist'),
+    path: root('./dist'),
     pathinfo: !env.prod, // should include path name comment for every import
   },
 
@@ -27,22 +31,38 @@ module.exports = (env) => ({
       },
       {
         test: /\.ts$/,
-        loaders: ['babel', 'awesome-typescript'],
+        loaders: ['awesome-typescript', 'angular2-template'],
         exclude: /node_modules/,
+      },
+      {
+        test: /\.tpl.html/,
+        loaders: ['raw'],
+      },
+
+      // {
+      //   test: /\.css$/,
+      //   loader: ExtractTextPlugin.extract('style', 'css?sourceMaps'),
+      //   exclude: root('./src/app'),
+      // },
+      {
+        test: /\.scss/,
+        loaders: ['raw', 'sass?sourceMaps'],
       },
     ],
   },
 
   plugins: stripUnused([
+
+    // new ExtractTextPlugin('[name].css'),
+
     new HTMLWebpackPlugin({
       template: './index.html',
     }),
-    env.test ? undefined : new webpack.optimize.CommonsChunkPlugin({
-      name: 'polyfill',
+
+    only(env.prod, new webpack.optimize.UglifyJsPlugin),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['app', 'vendor', 'polyfill'],
     }),
   ]),
 });
-
-function stripUnused(array) {
-  return array.filter(it => !!it);
-}

@@ -6,7 +6,12 @@
     "sourceMap": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "noEmitHelpers": true
+    "noEmitHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "useWebpackText": true //Allows loaders to be chained to awesome-typescript-loader.
   },
   "exclude": [
     "node_modules"
