@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
  * Home
  */
 @Component({
-  templateUrl: './home.tpl.html',
+  templateUrl: './home.jade',
   styleUrls: ['./home.scss'],
 })
 export class Home {

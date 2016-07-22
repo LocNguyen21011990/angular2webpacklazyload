@@ -62,12 +62,12 @@ module.exports = (env) => ({
       },
       {
         test: /\.scss/,
-        loaders: ['raw', 'sass?sourceMaps'],
+        loaders: ['to-string', 'css', 'resolve-url', 'sass?sourceMaps'],
         include: root('src/app'),
       },
       {
         test: /\.scss/,
-        loaders: ['style', 'css', 'resolve-url', 'sass?sourceMap'],
+        loaders: ExtractTextPlugin.extract(['css', 'resolve-url', 'sass?sourceMap']),
         include: root('src/styles'),
       },
     ],
@@ -75,7 +75,7 @@ module.exports = (env) => ({
 
   plugins: stripUnused([
 
-    // new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('[name].css'),
 
     new HTMLWebpackPlugin({
       template: './index.html',
