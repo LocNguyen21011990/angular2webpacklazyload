@@ -8,12 +8,19 @@
     "emitDecoratorMetadata": true,
     "noEmitHelpers": true,
     "allowSyntheticDefaultImports": true,
-    "allowJs": true
+    "allowJs": true,
+    "types": [
+      "node"
+    ],
+    "baseUrl": "src"
   },
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true //Allows loaders to be chained to awesome-typescript-loader.
   },
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "atom": {
+    "rewriteTsconfig": false
+  }
 }

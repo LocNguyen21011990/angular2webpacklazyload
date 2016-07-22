@@ -6,7 +6,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = (env) => ({
   context: root('./src'),
   resolve: {
-    extensions: ['', '.js', '.ts'],
+    extensions: ['', '.ts', '.js'],
+    modulesDirectories: ['node_modules'],
+    alias: {
+      app: root('src/app'),
+    },
   },
   entry: {
     polyfill: './polyfill.ts',
@@ -15,8 +19,8 @@ module.exports = (env) => ({
   },
 
   output: {
-    filename: '[name].bundle.js',
     path: root('./dist'),
+    filename: '[name].bundle.js',
     pathinfo: !env.prod, // should include path name comment for every import
   },
 
