@@ -46,8 +46,15 @@ module.exports = (env) => ({
         ],
       },
       {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        test: /\.(woff|woff2|ttf|eot|ico)$/,
         loader: 'file?name=assets/[name].[ext]',
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: stripUnused([
+          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          only(env.prod, 'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'),
+        ]),
       },
       {
         test: /\.scss/,
