@@ -7,10 +7,10 @@ module.exports = (env) => ({
   context: root('./src'),
   resolve: {
     extensions: ['', '.ts', '.js'],
-    modulesDirectories: ['node_modules'],
-    alias: {
-      app: root('src/app'),
-    },
+    modules: [
+      root('src'),
+      'node_modules',
+    ],
   },
   entry: {
     polyfill: './polyfill.ts',
@@ -35,7 +35,7 @@ module.exports = (env) => ({
       },
       {
         test: /\.ts$/,
-        loaders: ['babel', 'awesome-typescript', 'angular2-template'],
+        loaders: ['awesome-typescript', 'angular2-template'],
         exclude: /node_modules/,
       },
       {
@@ -74,18 +74,27 @@ module.exports = (env) => ({
   },
 
   plugins: stripUnused([
-
     new ExtractTextPlugin('[name].css'),
-
     new HTMLWebpackPlugin({
       template: './index.html',
     }),
-
     only(env.prod, new webpack.optimize.UglifyJsPlugin),
-
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfill'],
+      minChunks: Infinity,
     }),
+    only(env.prod, new webpack.LoaderOptionsPlugin({
+      debug: false
+    })),
+    only(env.prod, new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+      output: {
+        comments: false,
+      },
+      sourceMap: false,
+    })),
   ]),
 
   devServer: {
