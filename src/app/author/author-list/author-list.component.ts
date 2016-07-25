@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 /**
  * AuthorList
@@ -7,11 +8,26 @@ import { Component } from '@angular/core';
   templateUrl: './author-list.jade',
 })
 export class AuthorList {
-  constructor() {
+  private routeParamSub;
+  private params: any;
+  private isRandom: boolean;
+  constructor(
+    private route: ActivatedRoute
+  ) {}
 
+  ngOnInit() {
+    this.routeParamSub = this.route.params.subscribe(p => {
+      this.params = p;
+
+      if (!p['id']) {
+        this.isRandom = true;
+      } else {
+        this.isRandom = false;
+      }
+    });
   }
 
-  ngOnInit() {}
-
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.routeParamSub.unsubscribe();
+  }
 }

@@ -1,1 +1,6 @@
 h1 Many authors
+
+pre(*ngIf="!isRandom")
+  | {{ params | json }}
+div(*ngIf="isRandom")
+  | Getting random author...

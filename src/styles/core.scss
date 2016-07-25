@@ -1,1 +1,10 @@
 @import '../../node_modules/font-awesome/scss/font-awesome.scss';
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &.active {
+    color: palevioletred;
+  }
+}
