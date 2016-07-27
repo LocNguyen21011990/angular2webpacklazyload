@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Gender } from './author';
+import { Gender } from './enums';
 
 @Injectable()
 export class AuthorRepository {

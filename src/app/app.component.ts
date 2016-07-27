@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 
 @Component({
   selector: 'my-app',
@@ -9,7 +9,7 @@ export class App {
   private a: Array<string> = [];
 
   constructor(
-    private router: Router
+    // private router: Router
   ) {
     this.a.filter(it => {
       return !it.match(/asdf/g);

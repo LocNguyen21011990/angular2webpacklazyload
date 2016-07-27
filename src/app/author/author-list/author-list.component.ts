@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthorRepository } from './../author-repository.service.ts';
-import { Gender } from './../author.ts';
+import { Gender } from './../enums.ts';
 
 /**
  * AuthorList

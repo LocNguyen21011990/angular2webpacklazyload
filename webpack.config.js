@@ -12,11 +12,11 @@ module.exports = (env) => ({
       'node_modules',
     ],
   },
-  entry: {
+  entry: !env.test ? {
     polyfill: './polyfill.ts',
     vendor: './vendor.ts',
     app: './browser.bootstrap.ts',
-  },
+  } : undefined,
 
   output: {
     path: root('./dist'),
@@ -28,11 +28,6 @@ module.exports = (env) => ({
   bail: env.prod, // abort compilation on first error
   module: {
     loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/,
-      },
       {
         test: /\.ts$/,
         loaders: ['awesome-typescript', 'angular2-template'],
@@ -46,7 +41,7 @@ module.exports = (env) => ({
         test: /\.jade/,
         loaders: [
           'html',
-          'pug-html?pretty&' + JSON.stringify({ doctype: 'html' }),
+          `pug-html?pretty&${JSON.stringify({ doctype: 'html' })}`,
         ],
       },
       {
@@ -73,7 +68,7 @@ module.exports = (env) => ({
     ],
   },
 
-  plugins: stripUnused([
+  plugins: !env.test ? stripUnused([
     new ExtractTextPlugin('[name].css'),
     new HTMLWebpackPlugin({
       template: './index.html',
@@ -84,7 +79,7 @@ module.exports = (env) => ({
       minChunks: Infinity,
     }),
     only(env.prod, new webpack.LoaderOptionsPlugin({
-      debug: false
+      debug: false,
     })),
     only(env.prod, new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -95,7 +90,7 @@ module.exports = (env) => ({
       },
       sourceMap: false,
     })),
-  ]),
+  ]) : [],
 
   devServer: {
     historyApiFallback: true,
