@@ -5,8 +5,7 @@ header
     li
       a([routerLink]="['/author']", routerLinkActive="active") Author
       ul
-        li: a([routerLink]="['/author/hermingway']", routerLinkActive="active") E. Hermingway
-        li: a([routerLink]="['/author/carl-j']", routerLinkActive="active") Carl Jung
-        li: a([routerLink]="['/author/jk-rowling']", routerLinkActive="active") JK. Rowling
+        li(*ngFor="let author of authorList | async")
+          a([routerLink]="['/author', author.id]", routerLinkActive="active") {{ author.name }}
   .content
     router-outlet

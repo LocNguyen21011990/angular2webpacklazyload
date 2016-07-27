@@ -4,3 +4,8 @@ pre(*ngIf="!isRandom")
   | {{ params | json }}
 div(*ngIf="isRandom")
   | Getting random author...
+
+aside
+  ul
+    li(*ngFor="let author of authorList | async")
+      a([routerLink]="['/author', author.id]", routerLinkActive="active") {{ author.name }}

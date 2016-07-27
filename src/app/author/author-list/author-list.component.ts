@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { AuthorRepository } from './../author-repository.service.ts';
+import { Gender } from './../author.ts';
 
 /**
  * AuthorList
@@ -11,8 +13,11 @@ export class AuthorList {
   private routeParamSub;
   private params: any;
   private isRandom: boolean;
+  private authorList;
+
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authorRepo: AuthorRepository,
   ) {}
 
   ngOnInit() {
@@ -25,6 +30,8 @@ export class AuthorList {
         this.isRandom = false;
       }
     });
+
+    this.authorList = this.authorRepo.getByGender(Gender.Male);
   }
 
   ngOnDestroy() {
