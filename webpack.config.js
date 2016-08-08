@@ -3,6 +3,48 @@ const { root, stripUnused, only } = require('./helpers');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const moduleConfigs = (env) => ({
+  loaders: [
+    {
+      test: /\.ts$/,
+      loaders: ['awesome-typescript', 'angular2-template'],
+      exclude: /node_modules/,
+    },
+    {
+      test: /\.tpl.html/,
+      loaders: ['html'],
+    },
+    {
+      test: /\.jade/,
+      loaders: [
+        'html',
+        `pug-html?pretty&${JSON.stringify({ doctype: 'html' })}`,
+      ],
+    },
+    {
+      test: /\.(woff|woff2|ttf|eot|ico)$/,
+      loader: 'file?name=assets/[name].[ext]',
+    },
+    {
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      loaders: stripUnused([
+        'file?hash=sha512&digest=hex&name=[hash].[ext]',
+        only(env.prod, 'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'),
+      ]),
+    },
+    {
+      test: /\.scss/,
+      loaders: ['to-string', 'css', 'resolve-url', 'sass?sourceMaps'],
+      include: root('src/app'),
+    },
+    {
+      test: /\.scss/,
+      loaders: ExtractTextPlugin.extract(['css', 'resolve-url', 'sass?sourceMap']),
+      include: root('src/styles'),
+    },
+  ],
+});
+
 module.exports = (env) => ({
   context: root('./src'),
   resolve: {
@@ -26,47 +68,7 @@ module.exports = (env) => ({
 
   devtool: env.prod ? 'source-map' : 'eval-source-map',
   bail: env.prod, // abort compilation on first error
-  module: {
-    loaders: [
-      {
-        test: /\.ts$/,
-        loaders: ['awesome-typescript', 'angular2-template'],
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.tpl.html/,
-        loaders: ['html'],
-      },
-      {
-        test: /\.jade/,
-        loaders: [
-          'html',
-          `pug-html?pretty&${JSON.stringify({ doctype: 'html' })}`,
-        ],
-      },
-      {
-        test: /\.(woff|woff2|ttf|eot|ico)$/,
-        loader: 'file?name=assets/[name].[ext]',
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: stripUnused([
-          'file?hash=sha512&digest=hex&name=[hash].[ext]',
-          only(env.prod, 'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'),
-        ]),
-      },
-      {
-        test: /\.scss/,
-        loaders: ['to-string', 'css', 'resolve-url', 'sass?sourceMaps'],
-        include: root('src/app'),
-      },
-      {
-        test: /\.scss/,
-        loaders: ExtractTextPlugin.extract(['css', 'resolve-url', 'sass?sourceMap']),
-        include: root('src/styles'),
-      },
-    ],
-  },
+  module: moduleConfigs(env),
 
   plugins: !env.test ? stripUnused([
     new ExtractTextPlugin('[name].css'),
@@ -99,3 +101,5 @@ module.exports = (env) => ({
     poll: 1000,
   },
 });
+
+module.exports.moduleConfigs = moduleConfigs;

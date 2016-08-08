@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ObjectIterablePipe } from 'app/shared/pipe/object-iterable.pipe';
+import { ObjectIterablePipe } from './../shared/pipe/object-iterable.pipe.ts';
 
 // console.log(require('pug-html!./login.jade'));
 
