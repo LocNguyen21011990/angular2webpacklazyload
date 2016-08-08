@@ -24,7 +24,7 @@ module.exports = (env) => ({
     pathinfo: !env.prod, // should include path name comment for every import
   },
 
-  devtool: env.prod ? 'source-map' : 'eval',
+  devtool: env.prod ? 'source-map' : 'eval-source-map',
   bail: env.prod, // abort compilation on first error
   module: {
     loaders: [
@@ -95,5 +95,7 @@ module.exports = (env) => ({
   devServer: {
     historyApiFallback: true,
     stats: 'minimal',
+    aggregateTimeout: 300,
+    poll: 1000,
   },
 });

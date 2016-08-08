@@ -1,26 +1,33 @@
 import { Component } from '@angular/core';
-// import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'my-app',
   template: '<router-outlet></router-outlet>',
 })
 export class App {
-  private a: Array<string> = [];
+  private dataSub
 
   constructor(
-    // private router: Router
-  ) {
-    this.a.filter(it => {
-      return !it.match(/asdf/g);
-    });
-  }
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    let a = new Promise((resolve, reject) => {
-      resolve('asdf');
+    this.dataSub = this.route.data.subscribe(data => {
+      console.log(data);
     });
+    this.router.events.filter(ev => ev instanceof NavigationEnd)
+      .subscribe(_ => {
+        console.log(this.route.snapshot)
+        console.log(this.router.routerState.snapshot);
 
-    a.then();
+      })
+  }
+
+  ngOnDestroy() {
+    if (this.dataSub) {
+      this.dataSub.unsubscribe();
+    }
   }
 }

@@ -3,3 +3,5 @@ div
     i.fa.fa-home
     | This is our home
   button([routerLink]="['/author']") This button is cool
+div([innerHTML]="'<h1>The title</h1><button>Another button</button>'")
+div([dynamic-content]="content", [local]="localContent")
