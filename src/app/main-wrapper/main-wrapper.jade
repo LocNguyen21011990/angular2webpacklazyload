@@ -3,6 +3,8 @@ header
     li
       a([routerLink]="['/']", routerLinkActive="active", [routerLinkActiveOptions]="{exact: true}") Home
     li
+      a([routerLink]="['/library']", routerLinkActive="active") Library
+    li
       a([routerLink]="['/author']", routerLinkActive="active") Author
       ul
         li(*ngFor="let author of authorList | async")
