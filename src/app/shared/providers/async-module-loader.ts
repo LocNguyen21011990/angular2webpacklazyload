@@ -3,6 +3,7 @@ import {
   Injectable,
   Compiler,
   NgModuleFactory,
+  Type,
 } from '@angular/core';
 
 /**
@@ -13,10 +14,10 @@ import {
 export class AsyncNgModuleLoader implements NgModuleFactoryLoader {
   constructor(private compiler: Compiler) {}
 
-  load(modulePath: string | Promise<any>): Promise<NgModuleFactory<any>> {
-    if (modulePath instanceof Promise) {
+  load(modulePath: string | Function): Promise<NgModuleFactory<any>> {
+    if (typeof modulePath === 'function') {
       return Promise
-        .resolve(modulePath)
+        .resolve(modulePath())
         .then((type: any) => checkNotEmpty(type, '', ''))
         .then((type: any) => this.compiler.compileModuleAsync(type));
     }
@@ -31,3 +32,5 @@ function checkNotEmpty(value: any, modulePath: string, exportName: string): any 
   }
   return value;
 }
+
+export const asyncWrap: Type = (a: Function) => a;
