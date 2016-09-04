@@ -1,4 +1,4 @@
-import { provideRouter, Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AuthorRoutes } from './author/author.routes.ts';
 import { HomeRoutes } from './home/home.routes.ts';
 import { Login } from './login/login.component.ts';
@@ -25,5 +25,4 @@ export const AppRoutes: Routes = [
   },
 ];
 
-export const AppRoutesProvider = provideRouter(AppRoutes);
 export const routeModule = RouterModule.forRoot(AppRoutes);
