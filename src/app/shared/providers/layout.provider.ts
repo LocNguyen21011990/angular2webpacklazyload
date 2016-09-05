@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 /**
  * LayoutProvider
  */
+@Injectable()
 class LayoutProvider {
   private _data = {};
 

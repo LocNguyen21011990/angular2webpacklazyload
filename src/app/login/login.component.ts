@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ObjectIterablePipe } from 'app/shared/pipe/object-iterable.pipe';
 
 // console.log(require('pug-html!./login.jade'));
 
@@ -10,9 +9,7 @@ import { ObjectIterablePipe } from 'app/shared/pipe/object-iterable.pipe';
  */
 @Component({
   templateUrl: './login.jade',
-  // template: 'abc',
   styleUrls: ['./login.scss'],
-  pipes: [ObjectIterablePipe],
 })
 export class Login {
   private form: FormGroup;

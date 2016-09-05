@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthorRepository } from './../author/author-repository.service.ts';
+import { AuthorRepository } from './../author/author-repository.service';
 
 /**
  * MainWrapper
@@ -16,6 +16,6 @@ export class MainWrapper {
   ) {}
 
   ngOnInit() {
-    this.authorList = this.authorRepo.getList()
+    this.authorList = this.authorRepo.getList();
   }
 }

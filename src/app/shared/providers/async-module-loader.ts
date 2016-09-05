@@ -33,4 +33,4 @@ function checkNotEmpty(value: any, modulePath: string, exportName: string): any 
   return value;
 }
 
-export const asyncWrap: Type = (a: Function) => a;
+export const asyncWrap = a => a;

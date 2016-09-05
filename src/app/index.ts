@@ -8,6 +8,8 @@ import { Login } from './login/login.component';
 import { Home } from './home/home.component';
 import { AuthorList } from './author/author-list/author-list.component';
 import { MainWrapper } from './main-wrapper/main-wrapper.component';
+import { ObjectIterablePipe } from './shared/pipe/object-iterable.pipe';
+import { DynamicContent } from './shared/dynamic-content/dynamic-content.directive';
 
 @NgModule({
   imports: [
@@ -21,6 +23,8 @@ import { MainWrapper } from './main-wrapper/main-wrapper.component';
     Home,
     AuthorList,
     MainWrapper,
+    ObjectIterablePipe,
+    DynamicContent,
   ],
   bootstrap: [
     App,
