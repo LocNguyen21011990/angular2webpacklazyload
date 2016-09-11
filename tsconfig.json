@@ -6,9 +6,10 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "noEmitHelpers": true,
+    "noEmitHelpers": false,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
+    "moduleResolution": "node",
     "lib": [
       "dom",
       "es2015"

@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
-import { AuthorRoutes } from './author/author.routes.ts';
-import { HomeRoutes } from './home/home.routes.ts';
-import { Login } from './login/login.component.ts';
-import { MainWrapper } from './main-wrapper/main-wrapper.component.ts';
+import { AuthorRoutes } from './author/author.routes';
+import { HomeRoutes } from './home/home.routes';
+import { Login } from './login/login.component';
+import { MainWrapper } from './main-wrapper/main-wrapper.component';
 import { asyncWrap } from './shared/providers/async-module-loader';
 
 declare const System: any;

@@ -1,4 +1,14 @@
-import { Directive, Input, DynamicComponentLoader, Component, ViewContainerRef } from '@angular/core';
+import {
+  Directive,
+  Input,
+  Component,
+  ViewContainerRef,
+  Compiler,
+  NgModule,
+  ReflectiveInjector,
+} from '@angular/core';
+
+import { BrowserModule } from '@angular/platform-browser';
 
 @Directive({
   selector: '[dynamic-content]',
@@ -6,34 +16,41 @@ import { Directive, Input, DynamicComponentLoader, Component, ViewContainerRef }
 })
 export class DynamicContent {
   @Input('dynamic-content') value;
-  @Input() local;
+  @Input('local') local;
 
   constructor(
-    private dsl: DynamicComponentLoader,
+    private compiler: Compiler,
     private viewRef: ViewContainerRef,
-  ) {
-
-  }
+  ) {}
 
   ngOnInit() {
     this.load(this.value);
   }
 
   private load(template) {
-    this.dsl.loadNextToLocation(toComponent(template, this.local), this.viewRef);
-  }
-}
-
-function toComponent(template: string, locals?) {
-  @Component({
-    selector: 'content-component',
-    template,
-  })
-  class ContentComponent {
-    constructor() {
-      Object.assign(this, locals)
+    let local = this.local;
+    console.log(local);
+    @Component({
+      selector: 'content-component',
+      template,
+    })
+    class ContentComponent {
+      constructor() {
+        Object.assign(this, local);
+      }
     }
-  }
 
-  return ContentComponent;
+    @NgModule({
+      imports: [BrowserModule],
+      declarations: [ContentComponent],
+    })
+    class DynamicModule {}
+    this.compiler.compileModuleAndAllComponentsAsync(DynamicModule)
+      .then(factory => {
+        const compFactory = factory.componentFactories.find(x => x.componentType === ContentComponent);
+        const injector = ReflectiveInjector.fromResolvedProviders([], this.viewRef.parentInjector);
+        this.viewRef.createComponent(compFactory, 0, injector, []);
+      });
+  }
 }
+

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DynamicContent } from './../shared/dynamic-content/dynamic-content.directive';
 
 /**
  * Home
@@ -7,7 +6,6 @@ import { DynamicContent } from './../shared/dynamic-content/dynamic-content.dire
 @Component({
   templateUrl: './home.jade',
   styleUrls: ['./home.scss'],
-  directives: [DynamicContent],
 })
 export class Home {
   public title = 'This is our home';
@@ -25,8 +23,4 @@ export class Home {
   public contentLocal = {
     currentTime: new Date(),
   };
-
-  constructor() {
-
-  }
 }
