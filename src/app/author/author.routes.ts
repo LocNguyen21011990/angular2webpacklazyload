@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { AuthorList } from './author-list/author-list.component.ts';
+import { AuthorList } from './author-list/author-list.component';
 
 export const AuthorRoutes: Routes = [{
   path: 'author',

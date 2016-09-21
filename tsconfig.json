@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "es6",
     "target": "es5",
     "noImplicitAny": false,
     "sourceMap": true,
@@ -11,6 +11,8 @@
     "allowJs": true,
     "moduleResolution": "node",
     "lib": [
+      "es5",
+      "es6",
       "dom",
       "es2015"
     ],
@@ -20,7 +22,8 @@
     "baseUrl": "src"
   },
   "awesomeTypescriptLoaderOptions": {
-    "useWebpackText": true //Allows loaders to be chained to awesome-typescript-loader.
+    "useWebpackText": true, //Allows loaders to be chained to awesome-typescript-loader.
+    "forkChecker": true
   },
   "exclude": [
     "node_modules"

@@ -2,11 +2,12 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { root, stripUnused, only } = require('./helpers');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 
 module.exports = (env) => ({
   context: root('./src'),
   resolve: {
-    extensions: ['', '.ts', '.js'],
+    extensions: ['.ts', '.js'],
     modules: [
       root('src'),
       'node_modules',
@@ -70,6 +71,14 @@ module.exports = (env) => ({
 
   plugins: !env.test ? stripUnused([
     new ExtractTextPlugin('[name].css'),
+    /*
+    from https://github.com/angular/angular/issues/11580
+    */
+    new webpack.ContextReplacementPlugin(
+      // The (\\|\/) piece accounts for path separators in *nix and Windows
+      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      root('./src') // location of your src
+    ),
     new HTMLWebpackPlugin({
       template: './index.html',
     }),
@@ -90,6 +99,7 @@ module.exports = (env) => ({
       },
       sourceMap: false,
     })),
+    new ForkCheckerPlugin(),
   ]) : [],
 
   devServer: {
