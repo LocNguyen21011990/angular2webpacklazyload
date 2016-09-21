@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthorRepository } from './../author/author-repository.service';
+import { Session } from 'app/core';
 
 /**
  * MainWrapper
@@ -12,8 +13,11 @@ export class MainWrapper {
   private authorList;
 
   constructor(
-    private authorRepo: AuthorRepository
-  ) {}
+    private authorRepo: AuthorRepository,
+    private session: Session,
+  ) {
+    console.log(this.session.token);
+  }
 
   ngOnInit() {
     this.authorList = this.authorRepo.getList();
