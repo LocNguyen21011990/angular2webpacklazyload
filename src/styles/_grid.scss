@@ -1,0 +1,32 @@
+/* Dead Simple Grid (c) 2015 Vladimir Agafonkin */
+
+.row .row {
+	margin:  0 -$size--grid-gutter;
+}
+.col {
+	padding: 0  $size--grid-gutter;
+}
+
+.row {
+	@extend %clearfix;
+}
+
+@media only screen {
+	.col {
+		float: left;
+		width: 100%;
+	}
+}
+
+/* define some class */
+@for $i from 1 through 12 {
+	@each $size in sm, md, lg {
+		.col-#{$size}-#{$i} {
+			padding: 0  $size--grid-gutter;
+			@include mq($size) {
+				float: left;
+				width: $i * (100% / 12);
+			}
+		}
+	}
+}

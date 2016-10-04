@@ -1,0 +1,21 @@
+/**
+ * Mixins and pseudo class to extend
+ */
+
+@mixin mq($size) {
+	@if map-has-key($breakpoints, $size) {
+		@media (min-width: #{map-get($breakpoints, $size)}) {
+			@content;
+		}
+	} @else {
+		@content;
+	}
+}
+
+%clearfix {
+	&::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}

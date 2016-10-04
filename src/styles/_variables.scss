@@ -1,0 +1,16 @@
+$font--sans: 'Noto Sans', Helvetica, sans-serif;
+$font--serif: 'Noto Serif', Georgia, serif;
+
+$size--grid-gutter: 1em;
+$breakpoints: (
+	sm: 34em,
+	md: 54em,
+	lg: 72em,
+);
+
+$color--white-smoke:	hsl(270, 25%, 98%);
+$color--cornflower-blue: hsl(227, 50%, 71%);
+$color--slate-blue:	hsl(267, 19%, 46%);
+$color--lavender:	hsl(282, 17%, 85%);
+$color--thistle:	hsl(330, 26%, 75%);
+$color--input-border: lighten($color--cornflower-blue, 3%);
