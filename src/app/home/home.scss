@@ -1,12 +1,5 @@
-h1 {
-  font-family: sans-serif;
-}
-
-button {
-  border: 1px solid hsl(0, 0%, 90%);
-  padding: .5em 1em;
-
-  &:hover {
-    box-shadow: 0 1px 3px 0 hsla(0, 0%, 0%, .1);
-  }
+.box {
+  padding: 1em;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 3px 0 hsla(0, 0%, 0%, .05);
 }

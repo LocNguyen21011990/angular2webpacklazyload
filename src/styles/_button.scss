@@ -1,0 +1,29 @@
+$color--button-default: $color--cornflower-blue;
+
+%button {
+  border-radius: 2px;
+  padding: 1em 2.4em;
+  font-family: $font--prompt;
+  border: 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+button {
+  @extend %button;
+  color: white;
+  background: $color--button-default;
+  box-shadow: 0 1px 2px 0 transparentize($color--button-default , 0.6);
+  transition: background-color 0.25s;
+
+  &:hover {
+    transition: background-color 0.25s;
+    background: lighten($color--button-default, 3%);
+    box-shadow: 0 1px 2px 0 transparentize($color--button-default , 0.2);
+  }
+
+  &:active {
+    outline: none;
+  }
+}

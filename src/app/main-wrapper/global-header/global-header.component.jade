@@ -1,0 +1,13 @@
+header.row
+  .logo(col="38.2")
+    img.app-logo([src]="adfa")
+  ul.main-nav(col="61.8")
+    li
+      a.main-nav__item([routerLink]="['/']", routerLinkActive="active", [routerLinkActiveOptions]="{exact: true}") Home
+    li
+      a.main-nav__item([routerLink]="['/library']", routerLinkActive="active") Library
+    li.has-child
+      a.main-nav__item([routerLink]="['/author']", routerLinkActive="active") Author
+      ul.dropdown-menu
+        li(*ngFor="let author of authorList | async")
+          a([routerLink]="['/author', author.id]", routerLinkActive="active") {{ author.name }}

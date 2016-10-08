@@ -1,13 +1,3 @@
-header
-  ul.main-nav
-    li
-      a([routerLink]="['/']", routerLinkActive="active", [routerLinkActiveOptions]="{exact: true}") Home
-    li
-      a([routerLink]="['/library']", routerLinkActive="active") Library
-    li
-      a([routerLink]="['/author']", routerLinkActive="active") Author
-      ul
-        li(*ngFor="let author of authorList | async")
-          a([routerLink]="['/author', author.id]", routerLinkActive="active") {{ author.name }}
-  .content
-    router-outlet
+global-header
+.content
+  router-outlet

@@ -9,10 +9,12 @@ import { EnsureAnonymous } from './login/login-guard.provider';
 import { Home } from './home/home.component';
 import { AuthorList } from './author/author-list/author-list.component';
 import { MainWrapper } from './main-wrapper/main-wrapper.component';
+import { GlobalHeader } from './main-wrapper/global-header/global-header.component';
 import { ObjectIterablePipe } from './shared/pipe/object-iterable.pipe';
 import { DynamicContent } from './shared/dynamic-content/dynamic-content.directive';
 import { ApiModule } from 'app/api';
 import { CoreModule } from 'app/core';
+import { GridModule } from 'app/grid';
 
 @NgModule({
   imports: [
@@ -21,6 +23,7 @@ import { CoreModule } from 'app/core';
     ReactiveFormsModule,
     CoreModule.forRoot(),
     ApiModule,
+    GridModule,
   ],
   declarations: [
     App,
@@ -30,6 +33,7 @@ import { CoreModule } from 'app/core';
     MainWrapper,
     ObjectIterablePipe,
     DynamicContent,
+    GlobalHeader,
   ],
   bootstrap: [
     App,

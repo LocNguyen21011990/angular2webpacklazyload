@@ -5,3 +5,9 @@ div
   button([routerLink]="['/author']") This button is cool
 div([innerHTML]="'<h1>The title</h1><button>Another button</button>'")
 div([dynamic-content]="content", [local]="contentLocal")
+
+.row
+  .left(col="33.3")
+    .box Left
+  .right(col="66.6")
+    .box Right
