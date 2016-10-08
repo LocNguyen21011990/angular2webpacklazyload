@@ -1,14 +1,32 @@
-.row .row { margin:  0 -1.5em; }
-.col      { padding: 0  1.5em; }
+/* Dead Simple Grid (c) 2015 Vladimir Agafonkin */
 
-.row:after {
-    content: "";
-    clear: both;
-    display: table;
+.row .row {
+	margin:  0 -$size--grid-gutter;
+}
+.col {
+	padding: 0  $size--grid-gutter;
 }
 
-@media only screen { .col {
-    float: left;
-    width: 100%;
-    box-sizing: border-box;
-}}
+.row {
+	@extend %clearfix;
+}
+
+@media only screen {
+	.col {
+		float: left;
+		width: 100%;
+	}
+}
+
+/* define some class */
+@for $i from 1 through 12 {
+	@each $size in sm, md, lg {
+		.col-#{$size}-#{$i} {
+			padding: 0  $size--grid-gutter;
+			@include mq($size) {
+				float: left;
+				width: $i * (100% / 12);
+			}
+		}
+	}
+}
