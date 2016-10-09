@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
-import { Session } from 'app/core';
+import { Session } from 'app/shared';
 
 @Injectable()
 export class EnsureAnonymous implements CanActivate {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { LibraryComponent } from './library.component';
-import { libraryRouteProvider } from './library.routes';
+import { LibraryRoutingModule } from './library-routing.module';
 import { LibraryHomeComponent } from './library-home/library-home.component';
 
 @NgModule({
@@ -9,7 +9,7 @@ import { LibraryHomeComponent } from './library-home/library-home.component';
     LibraryHomeComponent,
   ],
   imports: [
-    libraryRouteProvider,
+    LibraryRoutingModule,
   ],
   providers: [],
 })

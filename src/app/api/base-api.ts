@@ -1,6 +1,6 @@
 import { Injector, Injectable } from '@angular/core';
 import { Http, RequestOptionsArgs, Headers } from '@angular/http';
-import { Session } from 'app/core';
+import { Session } from 'app/shared';
 
 @Injectable()
 export class BaseApi {

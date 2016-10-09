@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastMan } from './toast-man.service';
 import { ToastContainer } from './toast-container.component';
@@ -8,9 +8,7 @@ import { ToastContainer } from './toast-container.component';
     CommonModule,
   ],
 
-  providers: [
-    ToastMan,
-  ],
+  providers: [],
 
   declarations: [
     ToastContainer,
@@ -20,4 +18,13 @@ import { ToastContainer } from './toast-container.component';
     ToastContainer,
   ],
 })
-export class ToastrModule {}
+export class ToastrModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: ToastrModule,
+      providers: [
+        ToastMan,
+      ],
+    };
+  }
+}

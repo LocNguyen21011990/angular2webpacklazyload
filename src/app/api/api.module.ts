@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BookApi } from './book-api';
-import { CoreModule } from 'app/core';
+import { SharedModule } from 'app/shared';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
   imports: [
-    CoreModule,
+    SharedModule,
     HttpModule,
   ],
   providers: [

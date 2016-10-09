@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { LibraryHomeComponent } from './library-home/library-home.component';
 import { LibraryComponent } from './library.component';
-import { asyncWrap } from './../shared/providers/async-module-loader';
+import { LibraryDetailComponent } from './library-detail/library-detail.component';
 
 declare const System: any;
 
@@ -13,8 +13,8 @@ const LibraryRoute: Routes = [{
     component: LibraryHomeComponent,
   }, {
     path: ':id',
-    loadChildren: asyncWrap(() => System.import('./library-detail').then(r => r.LibraryDetailModule)),
+    component: LibraryDetailComponent,
   }],
 }];
 
-export const libraryRouteProvider = RouterModule.forChild(LibraryRoute);
+export const LibraryRoutingModule = RouterModule.forChild(LibraryRoute);

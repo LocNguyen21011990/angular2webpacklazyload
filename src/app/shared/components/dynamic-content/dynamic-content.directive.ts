@@ -8,13 +8,13 @@ import {
   ReflectiveInjector,
 } from '@angular/core';
 
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 @Directive({
   selector: '[dynamic-content]',
   providers: [  ],
 })
-export class DynamicContent {
+export class DynamicContentDirective {
   @Input('dynamic-content') value;
   @Input('local') local;
 
@@ -41,7 +41,7 @@ export class DynamicContent {
     }
 
     @NgModule({
-      imports: [BrowserModule],
+      imports: [CommonModule],
       declarations: [ContentComponent],
     })
     class DynamicModule {}

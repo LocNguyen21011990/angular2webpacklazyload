@@ -11,6 +11,10 @@ interface Toast {
 export class ToastMan {
   toasts = [] as Array<Toast>;
 
+  constructor() {
+    console.log('start toast man');
+  }
+
   show(title, body, timealive, type = 'default') {
     let toast = {
       type,
