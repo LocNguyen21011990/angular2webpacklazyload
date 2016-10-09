@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-
-// console.log(require('pug-html!./login.jade'));
+import { AuthApi } from 'app/api';
+import { Session } from 'app/shared';
 
 /**
  * Login
@@ -17,7 +17,9 @@ export class Login {
 
   constructor(
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authApi: AuthApi,
+    private session: Session,
   ) {}
 
   ngOnInit() {
@@ -28,14 +30,20 @@ export class Login {
   }
 
   handleFormSubmit() {
-    this.isSubmitted = true;
     if (!this.form.valid) {
       return;
     }
 
     let { username, password } = this.form.value;
-    if (username === password) {
-      this.router.navigate(['/']);
-    }
+    this.authApi.authorize(username, password)
+      .do(console.log.bind(console))
+      .subscribe(res => {
+        const { token } = res;
+        this.session.refreshSession({
+          token,
+          user: { login: username },
+        });
+        this.router.navigate(['/']);
+      });
   }
 }
