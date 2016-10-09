@@ -2,6 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'my-app',
-  template: '<router-outlet></router-outlet>',
+  templateUrl: './app.component.jade',
 })
 export class App {}

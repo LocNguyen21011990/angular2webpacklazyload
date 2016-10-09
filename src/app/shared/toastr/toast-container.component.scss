@@ -1,0 +1,38 @@
+:host {
+  display: block;
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  z-index: 1000;
+}
+
+.toast {
+  width: 20em;
+  padding: 1em;
+  border-radius: 5px;
+  margin-bottom: 1em;
+
+  .title {
+    font-size: .85em;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: .5em;
+  }
+
+  &:hover {
+    opacity: .8;
+  }
+
+  &.default {
+    background: hsla(0, 0%, 5%, 0.8);
+    color: #eee;
+    box-shadow: 0 1px 5px hsla(0, 0%, 0%, .5);
+  }
+
+  &.error {
+    background: hsla(0, 60%, 50%, .9);
+    color: #eee;
+    box-shadow: 0 1px 5px hsla(0%, 50%, 50%, .5);
+  }
+}

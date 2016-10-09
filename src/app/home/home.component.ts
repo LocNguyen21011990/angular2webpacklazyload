@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastMan } from 'app/shared/toastr';
 
 /**
  * Home
@@ -23,4 +24,12 @@ export class Home {
   public contentLocal = {
     currentTime: new Date(),
   };
+
+  constructor(
+    private toastr: ToastMan,
+  ) {}
+
+  test() {
+    this.toastr.show('Atoast', 'This is a test toast', 10000, 'error');
+  }
 }

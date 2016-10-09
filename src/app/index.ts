@@ -15,6 +15,7 @@ import { DynamicContent } from './shared/dynamic-content/dynamic-content.directi
 import { ApiModule } from 'app/api';
 import { CoreModule } from 'app/core';
 import { GridModule } from 'app/grid';
+import { ToastrModule } from './shared/toastr';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { GridModule } from 'app/grid';
     CoreModule.forRoot(),
     ApiModule,
     GridModule,
+    ToastrModule,
   ],
   declarations: [
     App,
